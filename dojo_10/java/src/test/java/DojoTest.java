@@ -1,3 +1,4 @@
+import dojo10.JSONMapper;
 import harnesses.ResourceLoader;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,10 +13,6 @@ import static org.junit.Assert.assertEquals;
  * Tests for the dojo.
  */
 public class DojoTest {
-	
-	@Before
-	public void setup() {
-	}
 
     @Test
     public void test_congrats_order_paid_off_for_ios_8_10_0() throws IOException {

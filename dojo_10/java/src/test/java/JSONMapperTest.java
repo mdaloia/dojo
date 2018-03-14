@@ -1,3 +1,4 @@
+import dojo10.JSONMapper;
 import harnesses.ResourceLoader;
 import org.junit.Test;
 
