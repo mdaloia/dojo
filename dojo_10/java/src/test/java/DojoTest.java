@@ -1,6 +1,5 @@
-import dojo10.JSONMapper;
-import harnesses.ResourceLoader;
-import org.junit.Before;
+import dojo10.presenter.AndroidPresenter;
+import dojo10.presenter.IOSPresenter;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -16,30 +15,26 @@ public class DojoTest {
 
     @Test
     public void test_congrats_order_paid_off_for_ios_8_10_0() throws IOException {
-        Map congrats = JSONMapper.toObject(
-                ResourceLoader.getFileAsString("congrats/congrats/congrats_order_paid_off_for_ios_8_10_0.json"),
-                Map.class
-        );
+        IOSPresenter presenter = new IOSPresenter();
+
+        Map congrats = presenter.getCongratsAsJson();
 
         assertEquals(
-                ((List<Map>)congrats.get("sections")).get(0).get("type"),
-                "mlu_offline_payment"
+                "mlu_offline_payment",
+                ((List<Map>)congrats.get("sections")).get(0).get("type")
         );
-
     }
 
     @Test
     public void test_congrats_order_paid_off_for_android_7_12_0() throws IOException {
-        Map congrats = JSONMapper.toObject(
-                ResourceLoader.getFileAsString("congrats/congrats/congrats_order_paid_off_for_android_7_12_0.json"),
-                Map.class
-        );
+        AndroidPresenter presenter = new AndroidPresenter();
+
+        Map congrats = presenter.getCongratsAsJson();
 
         assertEquals(
-                ((List<Map>)congrats.get("sections")).get(0).get("type"),
-                "offline_payment"
+                "offline_payment",
+                ((List<Map>)congrats.get("sections")).get(0).get("type")
         );
-
     }
 
 }
