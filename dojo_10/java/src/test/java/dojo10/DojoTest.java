@@ -1,3 +1,5 @@
+package dojo10;
+
 import dojo10.presenter.AndroidPresenter;
 import dojo10.presenter.IOSPresenter;
 import org.junit.Test;

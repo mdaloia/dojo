@@ -1,5 +1,6 @@
-import dojo10.JSONMapper;
-import harnesses.ResourceLoader;
+package dojo10;
+
+import dojo10.harnesses.ResourceLoader;
 import org.junit.Test;
 
 import java.io.IOException;

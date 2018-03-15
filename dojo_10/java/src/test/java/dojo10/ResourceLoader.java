@@ -1,4 +1,4 @@
-package harnesses;
+package dojo10.harnesses;
 
 import java.io.File;
 import java.io.IOException;
