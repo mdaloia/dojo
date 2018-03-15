@@ -1,10 +1,9 @@
 package dojo10.presenter;
 
-import java.io.IOException;
-import java.util.Map;
+import dojo10.model.CongratsModel;
 
 public interface Presenter {
 
-    public Map getCongratsAsJson() throws IOException;
+    public CongratsModel getViewModel();
 
 }

@@ -1,12 +1,12 @@
 package dojo10;
 
+import dojo10.model.AndroidCongratsModel;
+import dojo10.model.IOSCongratsModel;
 import dojo10.presenter.AndroidPresenter;
 import dojo10.presenter.IOSPresenter;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,26 +17,27 @@ public class DojoTest {
 
     @Test
     public void test_congrats_order_paid_off_for_ios_8_10_0() throws IOException {
+        IOSCongratsModel expectedCongrats = new IOSCongratsModel();
+        expectedCongrats.setType("offline_payment");
+
         IOSPresenter presenter = new IOSPresenter();
 
-        Map congrats = presenter.getCongratsAsJson();
+        IOSCongratsModel congrats = (IOSCongratsModel) presenter.getViewModel();
 
-        assertEquals(
-                "mlu_offline_payment",
-                ((List<Map>)congrats.get("sections")).get(0).get("type")
-        );
+        assertEquals(expectedCongrats, congrats);
     }
 
     @Test
     public void test_congrats_order_paid_off_for_android_7_12_0() throws IOException {
+        AndroidCongratsModel expectedCongrats = new AndroidCongratsModel();
+        expectedCongrats.setType("offline_payment");
+
         AndroidPresenter presenter = new AndroidPresenter();
 
-        Map congrats = presenter.getCongratsAsJson();
+        AndroidCongratsModel congrats = (AndroidCongratsModel) presenter.getViewModel();
 
-        assertEquals(
-                "offline_payment",
-                ((List<Map>)congrats.get("sections")).get(0).get("type")
-        );
+        assertEquals(expectedCongrats, congrats);
     }
+
 
 }

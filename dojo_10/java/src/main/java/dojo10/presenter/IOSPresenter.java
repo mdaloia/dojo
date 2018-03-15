@@ -1,49 +1,34 @@
 package dojo10.presenter;
 
-import dojo10.JSONMapper;
-
-import java.io.IOException;
-import java.util.Map;
+import dojo10.domain.Congrats;
+import dojo10.domain.CongratsFactory;
+import dojo10.model.CongratsModel;
+import dojo10.model.CongratsModelFactory;
+import dojo10.model.IOSCongratsModel;
+import dojo10.visitor.CongratsVisitor;
+import dojo10.visitor.IOSCongratsVisitor;
 
 public class IOSPresenter implements Presenter {
 
+    private CongratsFactory congratsFactory = new CongratsFactory();
+
     @Override
-    public Map getCongratsAsJson() throws IOException {
-        return getOldJson();
+    public CongratsModel getViewModel() {
+        Congrats congratsModel = congratsFactory.getCongrats();
+
+        return completeModel(congratsModel);
     }
 
-    private Map getOldJson() throws IOException {
-        return JSONMapper.toObject(
-                "{\n" +
-                        "  \"status\": \"success\",\n" +
-                        "  \"substatus\": null,\n" +
-                        "  \"heading\": \"¡Apúrate a pagar!\",\n" +
-                        "  \"title\": \"Paga ${price} en ${paymentMethodName} para reservar tu compra\",\n" +
-                        "  \"sections\": [{\n" +
-                        "    \"type\": \"mlu_offline_payment\",\n" +
-                        "    \"model\": {\n" +
-                        "      \"payment_data\": {\n" +
-                        "        \"values\": [{\n" +
-                        "          \"name\": \"Número de CI\",\n" +
-                        "          \"value\": \"1.111.111-1\"\n" +
-                        "        }],\n" +
-                        "        \"actions\": []\n" +
-                        "      },\n" +
-                        "      \"title\": \"Te pedirán estos datos:\",\n" +
-                        "      \"actions\": []\n" +
-                        "    }\n" +
-                        "  }, {\n" +
-                        "    \"type\": \"exit\",\n" +
-                        "    \"model\": {\n" +
-                        "      \"actions\": [{\n" +
-                        "        \"id\": \"go_to_home\",\n" +
-                        "        \"text\": \"Seguir comprando\"\n" +
-                        "      }]\n" +
-                        "    }\n" +
-                        "  }]\n" +
-                        "}",
-                Map.class
-        );
+    private IOSCongratsModel completeModel(Congrats congrats) {
+        CongratsVisitor iOSVisitor = new IOSCongratsVisitor();
+
+        congrats.accept(iOSVisitor);
+
+        CongratsModelFactory modelFactory = (CongratsModelFactory) iOSVisitor;
+
+        CongratsModel congratsModel = modelFactory.getModel();
+
+        return (IOSCongratsModel) congratsModel;
     }
 
 }
