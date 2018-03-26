@@ -8,12 +8,12 @@ import dojo10.model.IOSCongratsModel;
 import dojo10.visitor.CongratsVisitor;
 import dojo10.visitor.IOSCongratsVisitor;
 
-public class IOSPresenter implements Presenter {
+public class IOSCongratsPresenter implements CongratsPresenter<IOSCongratsModel> {
 
     private CongratsFactory congratsFactory = new CongratsFactory();
 
     @Override
-    public CongratsModel getViewModel() {
+    public IOSCongratsModel getViewModel() {
         Congrats congratsModel = congratsFactory.getCongrats();
 
         return completeModel(congratsModel);
@@ -24,11 +24,9 @@ public class IOSPresenter implements Presenter {
 
         congrats.accept(iOSVisitor);
 
-        CongratsModelFactory modelFactory = (CongratsModelFactory) iOSVisitor;
+        CongratsModelFactory<IOSCongratsModel> modelFactory = (CongratsModelFactory<IOSCongratsModel>) iOSVisitor;
 
-        CongratsModel congratsModel = modelFactory.getModel();
-
-        return (IOSCongratsModel) congratsModel;
+        return modelFactory.getModel();  // TODO: GETTER
     }
 
 }

@@ -5,9 +5,9 @@ import dojo10.model.CongratsModel;
 import dojo10.model.CongratsModelFactory;
 import dojo10.model.IOSCongratsModel;
 
-public class IOSCongratsVisitor implements CongratsVisitor, CongratsModelFactory {
+public class IOSCongratsVisitor implements CongratsVisitor, CongratsModelFactory<IOSCongratsModel> {
 
-    IOSCongratsModel dto;
+    private IOSCongratsModel dto;
 
     @Override
     public void visit(Congrats congrats) {
@@ -15,14 +15,18 @@ public class IOSCongratsVisitor implements CongratsVisitor, CongratsModelFactory
     }
 
     @Override
-    public CongratsModel getModel() {
+    public IOSCongratsModel getModel() {
+        if (dto == null) {
+            throw new IllegalStateException("The model is not built yet");
+        }
+
         return dto;
     }
 
     private IOSCongratsModel buildModel(Congrats congrats) {
         IOSCongratsModel dto = new IOSCongratsModel();
 
-        dto.setType(congrats.getType());
+        dto.setType("mlu_" + congrats.getType());  // TODO: GETTER
 
         return dto;
     }

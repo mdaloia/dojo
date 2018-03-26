@@ -7,7 +7,7 @@ public class IOSCongratsModel implements CongratsModel {
     private String type;
 
     public void setType(String type) {
-        this.type = "mlu_" + type;
+        this.type = type;
     }
 
     @Override

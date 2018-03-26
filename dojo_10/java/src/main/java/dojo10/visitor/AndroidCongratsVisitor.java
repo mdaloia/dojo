@@ -5,9 +5,9 @@ import dojo10.model.AndroidCongratsModel;
 import dojo10.model.CongratsModel;
 import dojo10.model.CongratsModelFactory;
 
-public class AndroidCongratsVisitor implements CongratsVisitor, CongratsModelFactory {
+public class AndroidCongratsVisitor implements CongratsVisitor, CongratsModelFactory<AndroidCongratsModel> {
 
-    AndroidCongratsModel dto;
+    private AndroidCongratsModel dto;
 
     @Override
     public void visit(Congrats congrats) {
@@ -15,7 +15,11 @@ public class AndroidCongratsVisitor implements CongratsVisitor, CongratsModelFac
     }
 
     @Override
-    public CongratsModel getModel() {
+    public AndroidCongratsModel getModel() {
+        if (dto == null) {
+            throw new IllegalStateException("The model is not built yet");
+        }
+
         return dto;
     }
 

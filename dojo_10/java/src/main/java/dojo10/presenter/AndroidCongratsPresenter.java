@@ -1,23 +1,20 @@
 package dojo10.presenter;
 
-import dojo10.JSONMapper;
 import dojo10.domain.Congrats;
 import dojo10.domain.CongratsFactory;
 import dojo10.model.AndroidCongratsModel;
 import dojo10.model.CongratsModel;
 import dojo10.model.CongratsModelFactory;
+import dojo10.model.IOSCongratsModel;
 import dojo10.visitor.AndroidCongratsVisitor;
 import dojo10.visitor.CongratsVisitor;
 
-import java.io.IOException;
-import java.util.Map;
-
-public class AndroidPresenter implements Presenter {
+public class AndroidCongratsPresenter implements CongratsPresenter<AndroidCongratsModel> {
 
     private CongratsFactory congratsFactory = new CongratsFactory();
 
     @Override
-    public CongratsModel getViewModel() {
+    public AndroidCongratsModel getViewModel() {
         Congrats congratsModel = congratsFactory.getCongrats();
 
         return completeModel(congratsModel);
@@ -28,11 +25,9 @@ public class AndroidPresenter implements Presenter {
 
         congrats.accept(androidVisitor);
 
-        CongratsModelFactory modelFactory = (CongratsModelFactory) androidVisitor;
+        CongratsModelFactory<AndroidCongratsModel> modelFactory = (CongratsModelFactory<AndroidCongratsModel>) androidVisitor;
 
-        CongratsModel congratsModel = modelFactory.getModel();
-
-        return (AndroidCongratsModel) congratsModel;
+        return modelFactory.getModel();
     }
 
 }

@@ -1,7 +1,7 @@
 package dojo10.model;
 
-public interface CongratsModelFactory {
+public interface CongratsModelFactory<T extends CongratsModel> {
 
-    public CongratsModel getModel();
+    public T getModel();
 
 }
