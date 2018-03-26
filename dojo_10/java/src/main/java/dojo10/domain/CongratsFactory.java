@@ -1,5 +1,8 @@
 package dojo10.domain;
 
+/**
+ * Esta clase seria el servicio que provee las congrats
+ */
 public class CongratsFactory {
 
     public Congrats getCongrats() {

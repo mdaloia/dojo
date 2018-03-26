@@ -14,6 +14,7 @@ public class AndroidCongratsModel implements CongratsModel {
         this.type = type;
     }
 
+    // IntelliJ IDEA auto-generated equals
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,6 +23,7 @@ public class AndroidCongratsModel implements CongratsModel {
         return Objects.equals(type, that.type);
     }
 
+    // IntelliJ IDEA auto-generated hashCode
     @Override
     public int hashCode() {
         return Objects.hash(type);

@@ -2,6 +2,10 @@ package dojo10.domain;
 
 import dojo10.visitor.CongratsVisitor;
 
+/**
+ * En esta clase se mapea la respuesta de un supuesto servicio
+ * que devuelve la "congrats" a mostrar
+ */
 public class Congrats {
 
     private String type;

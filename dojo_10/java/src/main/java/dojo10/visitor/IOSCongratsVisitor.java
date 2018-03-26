@@ -23,6 +23,7 @@ public class IOSCongratsVisitor implements CongratsVisitor, CongratsModelFactory
         return dto;
     }
 
+    // Aca se pueden hacer las adaptaciones necesarias para el modelo de iOS
     private IOSCongratsModel buildModel(Congrats congrats) {
         IOSCongratsModel dto = new IOSCongratsModel();
 
